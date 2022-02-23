@@ -6,17 +6,20 @@ import axios from 'axios'
 const store = createStore({
     state(){
         return{
-            counter:1, 
+            counter:0, 
             counter2:2, 
             counter3:3, 
+            history:[0]
         }
     },
     mutations:{
         addToCounter(state,payload){
             state.counter  = state.counter + payload
+            state.history.push(state.counter)
         },
         sutractFromCounter(state,payload){
             state.counter =state.counter - payload
+            state.history.push(state.counter)
         }
     },
     actions:{
@@ -25,6 +28,17 @@ const store = createStore({
             console.log(data);
             cotext.commit('addToCounter',data.data)
 
+        }
+    },
+    getters:{
+        activeIndexes:(state)=>(payload)=>{
+            let indexes=[];
+            state.history.forEach((number,index)=>{
+                if(number === payload){
+                    indexes.push(index)
+                }
+            })
+            return indexes
         }
     }
 })

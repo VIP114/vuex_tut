@@ -1,14 +1,17 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <Counter/>
+  <History/>
 </template>
  
 <script>
 import Counter from './components/Counter'
+import History from './components/History'
 export default {
   name: 'App',
   components:{
     Counter,
+    History,
   }
 }
 </script>
