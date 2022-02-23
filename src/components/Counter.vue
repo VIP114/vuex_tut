@@ -2,13 +2,16 @@
     <div>
         <h1>df</h1>
         <h1 class="counter">{{counter}}</h1>
-        <button @click="sutractFromCounter(value)">-</button>
+        <button class="btn" @click="sutractFromCounter(value)">-</button>
         <input type="number" v-model="value" />
-        <button @click="addToCounter(value)">+</button>
+        <button class="btn" @click="addToCounter(value)">+</button>
+        <div>
+            <button @click="addRandomNumber">Add By Rendom Numer</button>
+        </div>
     </div>
 </template>
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
     name:"Counter",
     data() {
@@ -21,15 +24,17 @@ export default {
         ...mapState(["counter","counter2"])
     },
     methods: {
-        ...mapMutations(['addToCounter','sutractFromCounter'])
+        ...mapMutations(['addToCounter','sutractFromCounter']),
+        ...mapActions(['addRandomNumber'])
     },
+
 }
 </script>
 <style scoped>
 .counter{
     font-size: 3rem;
 }
-button{
+.btn{
     border-radius: 100%  ;
     border: none;
     width: 2rem;
